@@ -1,14 +1,14 @@
 import express from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
-import { createServer } from "http";  // Import createServer instead of using http
+import { createServer } from "http"; // Import createServer
 import { Telegraf, Markup } from "telegraf";
 
-import User from "./mongodb/models/user.model.js";  // Make sure to handle imports correctly
-import connectDB from "./mongodb/connect.js";
+import User from "./mongodb/models/user.model.js"; // Ensure correct path
+import connectDB from "./mongodb/connect.js"; 
 import router from "./routes/routes.js";
 
-dotenv.config();  // Load environment variables
+dotenv.config(); // Load environment variables
 
 const PORT = process.env.PORT || 80;
 const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
@@ -19,8 +19,10 @@ if (!TOKEN || !BASE_URL) {
   throw new Error("Missing required environment variables.");
 }
 
+// Initialize bot
 const bot = new Telegraf(TOKEN);
 
+// Initialize Express app
 const app = express();
 app.use(cors());
 app.use(express.json({ limit: "50mb" }));
@@ -53,7 +55,8 @@ bot.catch((err, ctx) => {
 // Webhook setup
 app.use(bot.webhookCallback('/bot'));
 
-const server = createServer(app);  // Use createServer to create an HTTP server
+// Create the server
+const server = createServer(app);
 
 // Set the webhook with error handling
 bot.telegram.setWebhook(`${BASE_URL}/bot`)
