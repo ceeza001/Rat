@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
 
 // Bot start command
 bot.start((ctx) => {
-  const message = `Hey Hamster @${ctx.from.username}, Welcome to the Hamsters Community!\n\nGet rewarded for your Telegram account age and invite friends to earn more.`;
+  const message = `Hey LION @${ctx.from.username}, Welcome to the LIONS Community!\n\nGet rewarded for your Telegram account age and invite friends to earn more.`;
 
   const keyboard = Markup.inlineKeyboard([
     [Markup.button.url('Launch App', 'http://t.me/dogsBeta_bot/dogsClone'), 
