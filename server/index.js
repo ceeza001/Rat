@@ -35,7 +35,7 @@ bot.start((ctx) => {
   const message = `Hey LION @${ctx.from.username}, Welcome to the LIONS Community!\n\nGet rewarded for your Telegram account age and invite friends to earn more.`;
 
   const keyboard = Markup.inlineKeyboard([
-    [Markup.button.url('Launch App', 'http://t.me/dogsBeta_bot/dogsClone'), 
+    [Markup.button.url('Launch App', 'http://t.me/LionsSociety_bot/Lions'), 
      Markup.button.url('Join Telegram', 'http://t.me/HmstrsCommunity')],
     [Markup.button.url('Follow X', 'https://x.com/HmstrsCommunity'), 
      Markup.button.url('View Contract', 'https://tonviewer.com/EQAkMPVMrYLC82njyvxo4vIRYw1RNqpkfTswlcCiYRrCjB6G')]
