@@ -1,14 +1,14 @@
 import express from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
-import { createServer } from "http"; // Import createServer
+import { createServer } from "http";  // Import createServer instead of using http
 import { Telegraf, Markup } from "telegraf";
 
-import User from "./mongodb/models/user.model.js"; // Ensure correct path
-import connectDB from "./mongodb/connect.js"; 
+import User from "./mongodb/models/user.model.js";  // Make sure to handle imports correctly
+import connectDB from "./mongodb/connect.js";
 import router from "./routes/routes.js";
 
-dotenv.config(); // Load environment variables
+dotenv.config();  // Load environment variables
 
 const PORT = process.env.PORT || 80;
 const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
@@ -19,10 +19,8 @@ if (!TOKEN || !BASE_URL) {
   throw new Error("Missing required environment variables.");
 }
 
-// Initialize bot
 const bot = new Telegraf(TOKEN);
 
-// Initialize Express app
 const app = express();
 app.use(cors());
 app.use(express.json({ limit: "50mb" }));
@@ -34,10 +32,10 @@ app.get("/", (req, res) => {
 
 // Bot start command
 bot.start((ctx) => {
-  const message = `Hey LION @${ctx.from.username}, Welcome to the LIONS Community!\n\nGet rewarded for your Telegram account age and invite friends to earn more.`;
+  const message = `Hey Hamster @${ctx.from.username}, Welcome to the Hamsters Community!\n\nGet rewarded for your Telegram account age and invite friends to earn more.`;
 
   const keyboard = Markup.inlineKeyboard([
-    [Markup.button.url('Launch App', 'http://t.me/LionsSociety_bot/Lions'), 
+    [Markup.button.url('Launch App', 'http://t.me/dogsBeta_bot/dogsClone'), 
      Markup.button.url('Join Telegram', 'http://t.me/HmstrsCommunity')],
     [Markup.button.url('Follow X', 'https://x.com/HmstrsCommunity'), 
      Markup.button.url('View Contract', 'https://tonviewer.com/EQAkMPVMrYLC82njyvxo4vIRYw1RNqpkfTswlcCiYRrCjB6G')]
@@ -55,8 +53,7 @@ bot.catch((err, ctx) => {
 // Webhook setup
 app.use(bot.webhookCallback('/bot'));
 
-// Create the server
-const server = createServer(app);
+const server = createServer(app);  // Use createServer to create an HTTP server
 
 // Set the webhook with error handling
 bot.telegram.setWebhook(`${BASE_URL}/bot`)
